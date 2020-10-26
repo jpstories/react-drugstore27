@@ -1,84 +1,77 @@
 import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import './App.css';
 
 import userImage from './assets/img/user.png';
 import dropDownArrowWhite from './assets/img/drop-down-arrow_white.png';
+import { OrdersPage, ProfilePage, HomePage} from './pages'
+
+const userInfo = {
+  name: 'Сергей',
+  image: userImage,
+  isAdmin: true
+}
 
 function App() {
 
-  const openMenu = () => {
-    document.querySelector('.sidebar').classList.add('open');
-  };
-  const closeMenu = () => {
-    document.querySelector('.sidebar').classList.remove('open');
-  };
-
-  const userInfo = {
-    name: 'Сергей',
-    image: userImage,
-    isAdmin: true
-  }
+  // const openMenu = () => {
+  //   document.querySelector('.sidebar').classList.add('open');
+  // };
 
   return (
-    <div className="grid-container">
-      <header className="header">
-        <div className="brand">
-          <button onClick={openMenu}>&#9776;</button>
-          <a href="/">Аптека 27</a>
-        </div>
-        <div className="header-links">
-          <a href="cart.html">Корзина</a>
-          {userInfo ? (
-            <div className="user-info">
-              <span>Вы вошли как: </span>
-              <div className="user-info__block">
-                <img src={userInfo.image} alt="user" width="24" height="26" />
-                <a href="/profile">{userInfo.name}</a>
+    <BrowserRouter>
+      <div className="grid-container">
+        <header className="header">
+          <div className="brand">
+            <Link to="/">Аптека 27</Link>
+          </div>
+          <div className="header-links">
+            <Link to="/">Корзина</Link>
+            {userInfo ? (
+              <div className="user-info">
+                <span>Вы вошли как: </span>
+                <div className="user-info__block">
+                  <img src={userInfo.image} alt="user" width="24" height="26" />
+                  <Link to="/profile">{userInfo.name}</Link>
+                </div>
               </div>
-            </div>
-          ) : (
-              <a href="/signin">Войти</a>
+            ) : (
+                <Link to="/">Войти</Link>
+              )}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <div className="dropdown-admin">
+                  <mark><span className="admin-link">Администратор</span></mark>
+                  <img src={dropDownArrowWhite} alt="arrow" width="24" height="24" />
+                  <ul className="dropdown-content">
+                    <li className="dropdown-content_a">
+                      <Link to="/orders">Заказы</Link>
+                      <Link to="/products">Товары</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             )}
-          {userInfo && userInfo.isAdmin && (
-            <div className="dropdown">
-              <div className="dropdown-admin">
-                <mark><a className="admin-link" href="#">Администратор</a></mark>
-                <img src={dropDownArrowWhite} alt="arrow" width="24" height="24" />
-                <ul className="dropdown-content">
-                  <li className="dropdown-content_a">
-                    <a href="/orders">Заказы</a>
-                    <a href="/products">Товары</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
-      </header>
-      <aside className="sidebar">
-        <h3>Категории</h3>
-        <button className="sidebar-close-button" onClick={closeMenu}>
-          x
-          </button>
-        <ul className="categories">
-          <li>
-            <a href="/category/Pants">От головы</a>
-          </li>
+          </div>
+        </header>
 
-          <li>
-            <a href="/category/Shirts">От живота</a>
-          </li>
-        </ul>
-      </aside>
-      <main className="main">
-      </main>
-      <footer className="footer">
-        <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
-        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
-        <div className="copyright">Все права защищены</div>
-      </footer>
-    </div>
+        <main className="main">
+          <div className="content">
+              <Route path="/" exact={true} component={HomePage} />
+              <Route path="/profile" component={ProfilePage} />
+              <Route path="/orders" component={OrdersPage} />
+          </div>
+        </main>
+
+        <footer className="footer">
+          <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
+          <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+          <div className="copyright">Все права защищены</div>
+        </footer>
+
+      </div>
+    </BrowserRouter>
   );
 }
 
