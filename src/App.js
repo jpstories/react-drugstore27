@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css';
 
 import userImage from './assets/img/user.png';
-import dropDownArrowWhite from './assets/img/drop-down-arrow_white.png';
-import { OrdersPage, ProfilePage, HomePage} from './pages'
+import arrow from './assets/img/drop-down-arrow_white.png';
+import { OrdersPage, ProfilePage, HomePage, ProductPage } from './pages'
 
 const userInfo = {
   name: 'Сергей',
@@ -43,7 +43,7 @@ function App() {
               <div className="dropdown">
                 <div className="dropdown-admin">
                   <mark><span className="admin-link">Администратор</span></mark>
-                  <img src={dropDownArrowWhite} alt="arrow" width="24" height="24" />
+                  <img src={arrow} alt="arrow" width="24" height="24" />
                   <ul className="dropdown-content">
                     <li className="dropdown-content_a">
                       <Link to="/orders">Заказы</Link>
@@ -61,14 +61,15 @@ function App() {
               <Route path="/" exact={true} component={HomePage} />
               <Route path="/profile" component={ProfilePage} />
               <Route path="/orders" component={OrdersPage} />
+              <Route path="/product" component={ProductPage} />
           </div>
         </main>
 
-        <footer className="footer">
+        {/* <footer className="footer">
           <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
           <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
           <div className="copyright">Все права защищены</div>
-        </footer>
+        </footer> */}
 
       </div>
     </BrowserRouter>

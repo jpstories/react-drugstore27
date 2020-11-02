@@ -98,13 +98,13 @@ a:hover {
   flex: 0 1 34rem;
   margin: 0.5rem;
   height: 50rem;
-  border: 2px solid rgba(201, 201, 201, 0.473);
+  border: 1px solid rgba(201, 201, 201, 0.473);
   border-radius: 10px;
 }
 .product {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
 }
 .product-name {

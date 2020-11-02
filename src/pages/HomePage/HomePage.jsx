@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-const products = [
-    {
-        _id: '1',
-        image: '',
-        name: 'Цитовир',
-        brand: 'Цитомед',
-        price: '500'
-    }
-]
+import products from '../../data'
 
 function HomeScreen(props) {
-    const [searchKeyword, setSearchKeyword] = useState('');
-    const [sortOrder, setSortOrder] = useState('');
+    // const [searchKeyword, setSearchKeyword] = useState('');
+    // const [sortOrder, setSortOrder] = useState('');
 
     const submitHandler = (e) => {
         console.log('Препарат найден')
@@ -36,7 +27,7 @@ function HomeScreen(props) {
                     <form onSubmit={submitHandler}>
                         <input
                             name="searchKeyword"
-                            // onChange={(e) => setSearchKeyword(e.target.value)}
+                        // onChange={(e) => setSearchKeyword(e.target.value)}
                         />
                         <button type="submit">Поиск</button>
                     </form>
@@ -54,7 +45,7 @@ function HomeScreen(props) {
                 {products.map((product) => (
                     <li key={product._id}>
                         <div className="product">
-                            <Link to="/">
+                            <Link to="/product">
                                 <img
                                     className="product-image"
                                     src={product.image}
@@ -62,7 +53,7 @@ function HomeScreen(props) {
                                 />
                             </Link>
                             <div className="product-name">
-                                <Link to="/">{product.name}</Link>
+                                <Link to="/product">{product.name}</Link>
                             </div>
                             <div className="product-brand">Производитель: {product.brand}</div>
                             <div className="product-price">Цена: <mark>{product.price}руб.</mark></div>
