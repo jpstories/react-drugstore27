@@ -1,16 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const product = {
-  _id: '1',
-  image: 'https://imgs.asna.ru/resize_cache/118577/97452a19922aa0f4766549993f731cbe/iblock/6ff/6ff07668cac6139611ef481d7841c7f7/8733701.jpg',
-  name: 'Цитовир',
-  brand: 'Цитомед',
-  price: '750',
-  description: 'Антивирусное средство'
-}
+import products from '../../data'
 
-function ProductScreen() {
+function ProductScreen(props) {
+    const product = products.find(item => props.match.params.id === item._id);
+
     return (
       <div>
         <div className="back-to-result">

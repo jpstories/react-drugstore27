@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-import './App.css';
+// import './App.css';
 
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
@@ -61,7 +61,7 @@ function App() {
               <Route path="/" exact={true} component={HomePage} />
               <Route path="/profile" component={ProfilePage} />
               <Route path="/orders" component={OrdersPage} />
-              <Route path="/product" component={ProductPage} />
+              <Route path="/product/:id" component={ProductPage} />
           </div>
         </main>
 
