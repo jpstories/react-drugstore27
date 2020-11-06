@@ -13,19 +13,52 @@ const userInfo = {
   isAdmin: true
 }
 
-function App() {
+let trigger = false;
 
-  // const openMenu = () => {
-  //   document.querySelector('.sidebar').classList.add('open');
-  // };
+function App() {
+  const headerRef = React.useRef();
+  const adminOptionRef = React.useRef();
+  const arrowOptionRef = React.useRef();
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', updateHeaderBg);
+    return () => {
+      window.removeEventListener('scroll', updateHeaderBg);
+    }
+  }, [])
+
+  const updateHeaderBg = () => {
+    console.log(headerRef.current)
+    if(window.pageYOffset > 200) {
+      headerRef.current.style.position = 'fixed';
+    }
+    if(window.pageYOffset <= 100) {
+      headerRef.current.style.position = 'static';
+    }
+  }
+
+  const handleAdminOption = () => {
+    if ( trigger === false) {
+      adminOptionRef.current.style.display = 'flex';
+      arrowOptionRef.current.style.transform = 'rotateZ(180deg)';
+      trigger = true;
+    } else {
+      adminOptionRef.current.style.display = 'none';
+      arrowOptionRef.current.style.transform = '';
+      trigger = false;
+    }
+  }
 
   return (
     <BrowserRouter>
       <div className="grid-container">
-        <header className="header">
+
+        <header className="header" ref={headerRef}>
+
           <div className="brand">
             <Link to="/">Аптека 27</Link>
           </div>
+
           <div className="header-links">
             <Link to="/">Корзина</Link>
             {userInfo ? (
@@ -41,16 +74,21 @@ function App() {
               )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
+
                 <div className="dropdown-admin">
-                  <mark><span className="admin-link">Администратор</span></mark>
-                  <img src={arrow} alt="arrow" width="24" height="24" />
-                  <ul className="dropdown-content">
+                  <div className="admin-link" onClick={handleAdminOption}>
+                    <span>Администратор</span>
+                    <img src={arrow} alt="arrow" width="24" height="24" ref={arrowOptionRef} />
+                  </div>
+
+                  <ul className="dropdown-content" ref={adminOptionRef}>
                     <li className="dropdown-content_a">
                       <Link to="/orders">Заказы</Link>
                       <Link to="/products">Товары</Link>
                     </li>
                   </ul>
                 </div>
+
               </div>
             )}
           </div>
@@ -58,7 +96,9 @@ function App() {
 
         <main className="main">
           <div className="content">
-              <Route path="/" exact={true} component={HomePage} />
+              <Route path="/" exact={true} component={() => (
+                  <HomePage />)}> 
+              </Route>
               <Route path="/profile" component={ProfilePage} />
               <Route path="/orders" component={OrdersPage} />
               <Route path="/product/:id" component={ProductPage} />
