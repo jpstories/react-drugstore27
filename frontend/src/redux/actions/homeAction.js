@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const homeProducts = () => async (dispatch) => {
+const homeAction = () => async (dispatch) => {
     try {
         dispatch({ type: "PRODUCT_LIST_REQUEST" });
         const { data } = await axios.get("api/products");
@@ -10,4 +10,4 @@ const homeProducts = () => async (dispatch) => {
     }
 };
 
-export { homeProducts };
+export { homeAction };

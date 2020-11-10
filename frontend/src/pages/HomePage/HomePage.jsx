@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { homeProducts } from "../../redux/actions/homeProducts";
+import { homeAction } from "../../redux/actions/homeAction";
 
 function HomeScreen() {
     const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function HomeScreen() {
     const { products, loading, error } = useSelector((state) => state.productList);
 
     useEffect(() => {
-        dispatch(homeProducts());
+        dispatch(homeAction());
     }, []);
 
     return (
@@ -39,31 +39,31 @@ function HomeScreen() {
             ) : error ? (
                 <div>{error}</div>
             ) : (
-                <ul className="products">
-                    {products.map((product) => (
-                        <li key={product._id}>
-                            <div className="product">
-                                <Link to={`/product/${product._id}`}>
-                                    <img
-                                        className="product-image"
-                                        src={product.image}
-                                        alt="product"
-                                    />
-                                </Link>
-                                <div className="product-name">
-                                    <Link to="/product">{product.name}</Link>
-                                </div>
-                                <div className="product-brand">
-                                    Производитель: {product.brand}
-                                </div>
-                                <div className="product-price">
-                                    Цена: <mark>{product.price}руб.</mark>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-            )}
+                        <ul className="products">
+                            {products.map((product) => (
+                                <li key={product._id}>
+                                    <div className="product">
+                                        <Link to={`/product/${product._id}`}>
+                                            <img
+                                                className="product-image"
+                                                src={product.image}
+                                                alt="product"
+                                            />
+                                        </Link>
+                                        <div className="product-name">
+                                            <Link to="/product">{product.name}</Link>
+                                        </div>
+                                        <div className="product-brand">
+                                            Производитель: {product.brand}
+                                        </div>
+                                        <div className="product-price">
+                                            Цена: <mark>{product.price}руб.</mark>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
         </React.Fragment>
     );
 }

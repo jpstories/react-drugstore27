@@ -1,11 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-// import './App.css';
-
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
-import { OrdersPage, ProfilePage, HomePage, ProductPage } from './pages'
+import { OrdersPage, ProfilePage, HomePage, ProductPage, CartPage } from './pages'
 
 const userInfo = {
   name: 'Сергей',
@@ -28,17 +26,16 @@ function App() {
   }, [])
 
   const updateHeaderBg = () => {
-    console.log(headerRef.current)
-    if(window.pageYOffset > 200) {
+    if (window.pageYOffset > 200) {
       headerRef.current.style.position = 'fixed';
     }
-    if(window.pageYOffset <= 100) {
+    if (window.pageYOffset <= 100) {
       headerRef.current.style.position = 'static';
     }
   }
 
   const handleAdminOption = () => {
-    if ( trigger === false) {
+    if (trigger === false) {
       adminOptionRef.current.style.display = 'flex';
       arrowOptionRef.current.style.transform = 'rotateZ(180deg)';
       trigger = true;
@@ -96,12 +93,13 @@ function App() {
 
         <main className="main">
           <div className="content">
-              <Route path="/" exact={true} component={() => (
-                  <HomePage />)}> 
-              </Route>
-              <Route path="/profile" component={ProfilePage} />
-              <Route path="/orders" component={OrdersPage} />
-              <Route path="/product/:id" component={ProductPage} />
+            <Route path="/" exact={true} component={() => (
+              <HomePage />)}>
+            </Route>
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/orders" component={OrdersPage} />
+            <Route path="/cart/:id" component={CartPage} />
+            <Route path="/product/:id" component={ProductPage} />
           </div>
         </main>
 

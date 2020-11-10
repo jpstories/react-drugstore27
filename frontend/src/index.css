@@ -155,23 +155,24 @@ a > .rating > span:last-child {
 /* Product Details */
 .details {
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   padding: 1rem;
-}
-.details-image {
-  flex: 2 1 60rem;
+  margin-top: 20px;
 }
 .details-image img {
-  max-width: 60rem;
-  width: 100%;
+  max-width: 50rem;
 }
 .details-info {
-  flex: 1 1 30rem;
-}
-.details-action {
-  flex: 1 1 30rem;
+  flex: 1 1 35rem;
+  border: 1px solid #f1f1f1;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .details-info ul,
@@ -183,19 +184,25 @@ a > .rating > span:last-child {
 .details-action li {
   margin-bottom: 1rem;
 }
+.details-aside {
+  display: flex;
+  flex-flow: column;
+}
 .back-to-result {
   margin-top: 30px;
 }
 .back-to-result__a {
   padding: 0.7rem;
-  border: 2px solid blue;
-  background: linear-gradient(45deg, rgb(81, 81, 134),rgb(62, 106, 250));
+  border: 2px solid #21385096;
   border-radius: 5px;
-  color: white;
+  color: rgb(56, 56, 95);
   margin-left: 5px;
+  transition: 0.1s;
 }
 .back-to-result__a:hover{
-  color: rgb(207, 207, 207);
+  color: rgb(28, 28, 43);
+  border: 2px solid #13171b96;
+  background: #f8f8f8;
 }
 .details-action {
   border: 0.1rem #808080 solid;
@@ -225,6 +232,16 @@ a > .rating > span:last-child {
 .text-center {
   text-align: center;
 }
+.details-action-list__status {
+  display: flex;
+  flex-flow: column;
+}
+.marked {
+  width: max-content;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
 /* Cart */
 
 .cart {
@@ -247,7 +264,7 @@ a > .rating > span:last-child {
   list-style-type: none;
   padding: 1rem;
 }
-.cart-list-container li {
+.cart-item {
   display: flex;
   justify-content: space-between;
 
@@ -256,11 +273,11 @@ a > .rating > span:last-child {
   border-bottom: 0.1rem #c0c0c0 solid;
   align-items: center;
 }
-.cart-list-container li img {
+.cart-item img {
   max-width: 10rem;
   max-height: 10rem;
 }
-.cart-list-container li:first-child {
+.cart-item:first-child {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -288,7 +305,7 @@ a > .rating > span:last-child {
 }
 
 .btn-cart-delete{
-  margin-bottom: 15px;
+  margin: 0 15px 15px 0;
 }
 
 /* forms */
