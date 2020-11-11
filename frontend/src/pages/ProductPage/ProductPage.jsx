@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCartAction } from "../../redux/actions/cartAction";
 import { detailAction } from "../../redux/actions/detailAction";
 
 function ProductScreen(props) {
@@ -12,8 +13,8 @@ function ProductScreen(props) {
     }, []);
 
     const handleAddToCart = () => {
-        console.log(props)
-        props.history.push('/cart/' + props.match.params.id)
+        props.history.push('/cart')
+        dispatch(addToCartAction(props.match.params.id))
     }
 
     return (
@@ -24,7 +25,7 @@ function ProductScreen(props) {
                 </Link>
             </div>
 
-            {loading ? <div>Loading...</div> :
+            {loading ? <div className="loading">Загрузка...</div> :
                 error ? <div>Error</div> :
                     <React.Fragment>
                         <div className="details">
@@ -53,7 +54,7 @@ function ProductScreen(props) {
                                                 <span className="marked">В наличии</span>
                                                 <button onClick={handleAddToCart} className="button primary">
                                                     Добавить
-                                                    </button>
+                                                </button>
                                             </div> : <div><b>Нет в наличии</b></div>
                                         }
                                     </div>
@@ -67,7 +68,6 @@ function ProductScreen(props) {
                                 Пожалуйста <Link to="/signin">войдите</Link> чтобы оставить отзыв.
                             </div>
                         </div>
-
                     </React.Fragment>
             }
         </div>

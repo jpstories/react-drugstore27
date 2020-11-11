@@ -35,7 +35,7 @@ function HomeScreen() {
             </div>
 
             {loading ? (
-                <div>Loading...</div>
+                <div className="loading">Загрузка...</div>
             ) : error ? (
                 <div>{error}</div>
             ) : (

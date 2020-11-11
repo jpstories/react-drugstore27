@@ -1,15 +1,15 @@
 import express from 'express'
-import data from './data'
+import products from './data'
 
 const app = express();
 
 app.get("/api/products", (req, res) => {
-    res.send(data.products);
+    res.send(products);
 })
 
-app.get("/product/:id", (req, res) => {
+app.get("/api/products/:id", (req, res) => {
     const productID = req.params.id;
-    const product = data.products.find(item => item._id === productID);
+    const product = products.find(item => item._id === productID);
     if (product) {
         res.send(product)
     } else {

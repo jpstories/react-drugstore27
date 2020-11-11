@@ -57,7 +57,7 @@ function App() {
           </div>
 
           <div className="header-links">
-            <Link to="/">Корзина</Link>
+            <Link to="/cart">Корзина</Link>
             {userInfo ? (
               <div className="user-info">
                 <span>Вы вошли как: </span>
@@ -98,7 +98,7 @@ function App() {
             </Route>
             <Route path="/profile" component={ProfilePage} />
             <Route path="/orders" component={OrdersPage} />
-            <Route path="/cart/:id" component={CartPage} />
+            <Route path="/cart" component={CartPage} />
             <Route path="/product/:id" component={ProductPage} />
           </div>
         </main>
