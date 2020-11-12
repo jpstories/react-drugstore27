@@ -4,12 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
 import { OrdersPage, ProfilePage, HomePage, ProductPage, CartPage, RegisterPage, SigninPage } from './pages'
-
-const userInfo = {
-  name: 'Сергей',
-  image: userImage,
-  isAdmin: true
-}
+import { useSelector } from 'react-redux';
 
 let trigger = false;
 
@@ -17,6 +12,8 @@ function App() {
   const headerRef = React.useRef();
   const adminOptionRef = React.useRef();
   const arrowOptionRef = React.useRef();
+
+  const { userInfo } = useSelector(state => state.userSignin);
 
   React.useEffect(() => {
     window.addEventListener('scroll', updateHeaderBg);
@@ -28,9 +25,11 @@ function App() {
   const updateHeaderBg = () => {
     if (window.pageYOffset > 200) {
       headerRef.current.style.position = 'fixed';
+      headerRef.current.style.height = '65px';
     }
-    if (window.pageYOffset <= 100) {
+    if (window.pageYOffset <= 120) {
       headerRef.current.style.position = 'static';
+      headerRef.current.style.height = '75px';
     }
   }
 
@@ -62,22 +61,24 @@ function App() {
           </div>
 
           <div className="header-links">
-            <Link to="/cart">Корзина</Link>
+            <Link className="header-links-cart" to="/cart">Корзина</Link>
+
             {userInfo ? (
               <div className="user-info">
                 <span>Вы вошли как: </span>
                 <div className="user-info__block">
-                  <img src={userInfo.image} alt="user" width="24" height="26" />
+                  <img src={userImage} alt="user" width="24" height="26" />
                   <Link to="/profile">{userInfo.name}</Link>
                 </div>
               </div>
+
             ) : (
-                <Link to="/">Войти</Link>
+                <Link to="/signin">Войти</Link>
               )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-
                 <div className="dropdown-admin">
+
                   <div className="admin-link" onClick={handleAdminOption}>
                     <span>Администратор</span>
                     <img src={arrow} alt="arrow" width="24" height="24" ref={arrowOptionRef} />
@@ -89,8 +90,8 @@ function App() {
                       <Link to="/products">Товары</Link>
                     </li>
                   </ul>
-                </div>
 
+                </div>
               </div>
             )}
           </div>
