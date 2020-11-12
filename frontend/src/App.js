@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
-import { OrdersPage, ProfilePage, HomePage, ProductPage, CartPage } from './pages'
+import { OrdersPage, ProfilePage, HomePage, ProductPage, CartPage, RegisterPage, SigninPage } from './pages'
 
 const userInfo = {
   name: 'Сергей',
@@ -53,6 +53,11 @@ function App() {
         <header className="header" ref={headerRef}>
 
           <div className="brand">
+            <img
+              className="brand__img"
+              src="https://cdn3.iconfinder.com/data/icons/medical-health-care/256/Pharmacy-512.png"
+              alt="logo"
+            />
             <Link to="/">Аптека 27</Link>
           </div>
 
@@ -96,10 +101,12 @@ function App() {
             <Route path="/" exact={true} component={() => (
               <HomePage />)}>
             </Route>
-            <Route path="/profile" component={ProfilePage} />
-            <Route path="/orders" component={OrdersPage} />
-            <Route path="/cart" component={CartPage} />
             <Route path="/product/:id" component={ProductPage} />
+            <Route path="/cart" component={CartPage} />
+            <Route path="/orders" component={OrdersPage} />
+            <Route path="/profile" component={ProfilePage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/signin" component={SigninPage} />
           </div>
         </main>
 

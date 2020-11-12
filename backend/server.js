@@ -16,7 +16,7 @@ mongoose.connect(mongodbUrl, {
 
 const app = express();
 
-app.use('/api/users', userRoute)
+app.use('/api/users', userRoute);
 
 app.get("/api/products", (req, res) => {
     res.send(products);

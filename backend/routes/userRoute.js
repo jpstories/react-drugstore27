@@ -5,16 +5,16 @@ const router = express.Router();
 
 router.get('/createadmin', async (req, res) => {
     try {
-        const user = new User({
+        const admin = new User({
             name: 'Сергей',
             email: 'gmdalmask@gmail.com',
             password: '1234',
             isAdmin: true
         });
-        const newUser = await user.save();
-        res.send(newUser)
+        await admin.save();
+        res.send(admin);
     } catch (error) {
-        res.send({ msg: error.message })
+
     }
 })
 

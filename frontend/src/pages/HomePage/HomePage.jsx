@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { homeAction } from "../../redux/actions/homeAction";
+import Axios from "axios";
 
 function HomeScreen() {
     const dispatch = useDispatch();
