@@ -6,7 +6,8 @@ const products = [
         brand: 'Цитомед',
         price: '750',
         description: 'Препарат является средством этиотропной и иммуностимулирующей терапии, обладает опосредованным противовирусным действием в отношении вирусов гриппа А и В, а также других вирусов, вызывающих острые респираторные заболевания. Снижает выраженность основных клинических симптомов гриппа и ОРВИ, а также сокращает продолжительность заболевания и способствует его неосложненному течению.',
-        stock: 11
+        stock: 11,
+        reviews: 0
     },
     {
         _id: '2',
@@ -15,7 +16,8 @@ const products = [
         brand: 'Цитомед',
         price: '500',
         description: 'Антивирусное средство',
-        stock: 5
+        stock: 5,
+        reviews: 0
     },
     {
         _id: '3',
@@ -24,7 +26,8 @@ const products = [
         brand: 'Цитомед',
         price: '500',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
     {
         _id: '4',
@@ -33,7 +36,8 @@ const products = [
         brand: 'Цитомед',
         price: '1200',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
     {
         _id: '5',
@@ -42,7 +46,8 @@ const products = [
         brand: 'Цитомед',
         price: '750',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
     {
         _id: '6',
@@ -51,7 +56,8 @@ const products = [
         brand: 'Цитомед',
         price: '500',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
     {
         _id: '7',
@@ -60,7 +66,8 @@ const products = [
         brand: 'Цитомед',
         price: '500',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
     {
         _id: '8',
@@ -69,7 +76,8 @@ const products = [
         brand: 'Цитомед',
         price: '1200',
         description: 'Антивирусное средство',
-        stock: 13
+        stock: 13,
+        reviews: 0
     },
 ]
 

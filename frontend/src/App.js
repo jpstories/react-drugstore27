@@ -3,7 +3,12 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
-import { OrdersPage, ProfilePage, HomePage, ProductPage, CartPage, RegisterPage, SigninPage } from './pages'
+
+import {
+  OrdersPage, ProfilePage, HomePage, ProductPage,
+  CartPage, RegisterPage, SigninPage, ProductsPage
+} from './pages'
+
 import { useSelector } from 'react-redux';
 
 let trigger = false;
@@ -108,6 +113,7 @@ function App() {
             <Route path="/profile" component={ProfilePage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/signin" component={SigninPage} />
+            <Route path="/products" component={ProductsPage} />
           </div>
         </main>
 
