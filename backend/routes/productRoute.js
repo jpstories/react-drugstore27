@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductModel from '../models/ProductModel';
+import Product from '../models/ProductModel';
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const product = new ProductModel({
+    const product = new Product({
         name: req.body.name,
         image: req.body.image,
         brand: req.body.brand,

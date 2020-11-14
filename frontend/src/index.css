@@ -49,7 +49,8 @@ button {
   margin: 0 10px;
 }
 .brand__img {
-  width: 60px;
+  width: 70px;
+  margin-left: 10px;
 }
 .header-links{
   display: flex;
@@ -61,10 +62,10 @@ button {
 }
 .header-links-cart{
   margin-right: 10px;
+  margin-left: 5px;
 }
 .header-links a {
-  color: #ffffff;
-  text-decoration: underline;
+  color: #fafafa;
 }
 .header-links a:hover {
   color: #ff8000;
@@ -109,11 +110,11 @@ a:hover {
 .products li {
   list-style-type: none;
   padding-left: 10px;
-  flex: 0 1 34rem;
-  margin: 0.5rem;
-  height: 50rem;
-  border: 1px solid rgba(201, 201, 201, 0.473);
+  flex: 0 1 28rem;
+  margin: 4rem;
+  height: 45rem;
   border-radius: 10px;
+  border: 1px solid rgb(248, 248, 248);
 }
 .product {
   display: flex;
@@ -134,8 +135,8 @@ a:hover {
   font-weight: bold;
 }
 .product-image {
-  max-width: 34rem;
-  max-height: 34rem;
+  max-width: 24rem;
+  max-height: 24rem;
 }
 .product-rating {
   margin-bottom: 1rem;
@@ -354,7 +355,6 @@ a > .rating > span:last-child {
 .form {
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
   margin-top: 30px;
 }
@@ -491,22 +491,24 @@ tbody > tr:nth-child(odd) {
 .dropdown-content {
   position: absolute;
   list-style-type: none;
-  background-color: #213850;
   display: none;
-  top: 48px;
-  height: 30px;
+  top: 65px;
+  height: 50px;
   width: max-content;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding: 0;
   right: 10px;
+  z-index: 9998;
 }
 
 .dropdown-content li a {
   text-decoration: none;
   margin-right: 5px;
   padding: 7px;
-  border: 2px solid #e7e7e7;
+  border: 2px solid #ffa216;
+  border-radius: 10px;
+  background-color: #213850;
 }
 
 /* .dropdown:hover img {
@@ -587,10 +589,24 @@ tbody > tr:nth-child(odd) {
   width: max-content;
   min-width: 65px;
   margin-top: 5px;
-  border: 2px solid rgb(77, 77, 77);
-  border-radius: 5px;
 }
 
 .user-info__block img{
   margin-right: 5px;
 }
+.user-info__block a {
+  border-bottom: 3px solid rgb(65, 41, 163);
+}
+
+.table-content {
+  width: 100%;
+  height: max-content;
+  min-height: 300px;
+}
+
+::-webkit-scrollbar{ width: 4px;  /* 1 - вертикальный скроллбар */}
+::-webkit-scrollbar:horizontal{ height: 4px; /* 1 - горизонтальный скроллбар */}
+::-webkit-scrollbar-button {display: none; /* 2 - кнопка */}
+::-webkit-scrollbar-track {background: rgb(172, 172, 172);/* 3 - трек */}
+::-webkit-scrollbar-track-piece { background: rgb(218, 218, 218); /* 4 – видимая часть трека */ }
+::-webkit-scrollbar-thumb {background: #2d2241; border-radius: 25px;}

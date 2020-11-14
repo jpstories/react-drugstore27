@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { productSaveAction } from '../../redux/actions/homeAction';
+import CTable from '../../components/CTable';
+import { homeAction, productSaveAction } from '../../redux/actions/homeAction';
 
 function ProductsPage() {
     const dispatch = useDispatch();
@@ -10,20 +11,23 @@ function ProductsPage() {
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
     const [stock, setStock] = useState('');
-
+    const { products } = useSelector(state => state.productList);
+    console.log(products)
     const productSaved = useSelector(state => state.productSave);
     const { loading: loadingSave, success: successSave, error: errorSave } = productSaved;
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(productSaveAction({ name, image, brand, price, description, stock }))
+    }
+
     useEffect(() => {
+        dispatch(homeAction())
         return {
 
         }
     }, [])
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        dispatch(productSaveAction(name, image, brand, price, description, stock))
-    }
 
     return <div className="form">
         <form onSubmit={submitHandler}>
@@ -115,6 +119,9 @@ function ProductsPage() {
                 </li>
             </ul>
         </form>
+        <div className="table-content">
+            <CTable products={products} />
+        </div>
     </div>
 }
 export default ProductsPage;

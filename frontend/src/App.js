@@ -59,13 +59,14 @@ function App() {
           <div className="brand">
             <img
               className="brand__img"
-              src="https://cdn3.iconfinder.com/data/icons/medical-health-care/256/Pharmacy-512.png"
+              src="https://www.pngrepo.com/download/287892/pills-medicine.png"
               alt="logo"
             />
             <Link to="/">Аптека 27</Link>
           </div>
 
           <div className="header-links">
+            <img width="30" src="./images/cart.png" alt="cart" />
             <Link className="header-links-cart" to="/cart">Корзина</Link>
 
             {userInfo ? (

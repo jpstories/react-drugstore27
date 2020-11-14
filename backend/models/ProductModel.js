@@ -10,6 +10,6 @@ const productSchema = new mongoose.Schema({
     reviews: { type: Number, default: 0 }
 });
 
-const productModel = mongoose.model('ProductModel', productSchema);
+const productModel = mongoose.model('Product', productSchema);
 
 export default productModel;

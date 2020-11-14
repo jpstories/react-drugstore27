@@ -17,7 +17,6 @@ const homeAction = () => async (dispatch) => {
 
 const productSaveAction = (product) => async (dispatch, getState) => {
     try {
-        dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
         const { userSignin: { userInfo } } = getState();
         dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
         const { data } = await Axios.post('/api/products', product, {
