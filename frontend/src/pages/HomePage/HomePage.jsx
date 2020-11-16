@@ -57,7 +57,7 @@ function HomeScreen() {
                                             Производитель: {product.brand}
                                         </div>
                                         <div className="product-price">
-                                            Цена: <mark>{product.price}руб.</mark>
+                                            Цена: {product.price}руб.
                                         </div>
                                     </div>
                                 </li>

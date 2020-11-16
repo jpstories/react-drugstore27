@@ -4,6 +4,18 @@ import { Link } from "react-router-dom";
 import { addToCartAction } from "../../redux/actions/cartAction";
 import { detailAction } from "../../redux/actions/detailAction";
 
+import { Carousel } from 'antd';
+
+const contentStyle = {
+    height: '162px',
+    width: '400px',
+    color: '#fff',
+    lineHeight: '120px',
+    textAlign: 'center',
+    background: '#e9e9e9',
+    color: '#444'
+};
+
 function ProductScreen(props) {
     const dispatch = useDispatch();
     const { product, loading, error } = useSelector((state) => state.productDetails);
@@ -18,7 +30,7 @@ function ProductScreen(props) {
     }
 
     return (
-        <div>
+        <div className="product-detail-page">
             <div className="back-to-result">
                 <Link className="back-to-result__a" to="/">
                     &#8592; Назад
@@ -31,6 +43,20 @@ function ProductScreen(props) {
                         <div className="details">
                             <div className="details-image">
                                 <img src={product.image} alt="product"></img>
+                                <Carousel autoplay dotPosition="left">
+                                    <div>
+                                        <h3 style={contentStyle}>1</h3>
+                                    </div>
+                                    <div>
+                                        <h3 style={contentStyle}>2</h3>
+                                    </div>
+                                    <div>
+                                        <h3 style={contentStyle}>3</h3>
+                                    </div>
+                                    <div>
+                                        <h3 style={contentStyle}>4</h3>
+                                    </div>
+                                </Carousel>
                             </div>
 
                             <div className="details-aside">
@@ -52,7 +78,7 @@ function ProductScreen(props) {
                                             <div className="details-action-list__status">
                                                 <div className="details-action-list__el"><b>Цена:</b> {product.price} рублей</div>
                                                 <span className="marked">В наличии</span>
-                                                <button onClick={handleAddToCart} className="button primary">
+                                                <button onClick={handleAddToCart} className="button primary" style={{ maxWidth: '200px' }}>
                                                     Добавить
                                                 </button>
                                             </div> : <div><b>Нет в наличии</b></div>

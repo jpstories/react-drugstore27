@@ -25,7 +25,7 @@ function SigninScreen(props) {
 
   return <div className="form">
     <form onSubmit={submitHandler}>
-      <ul className="form-container">
+      <ul className="form-container-signin">
         <li>
           <h2>Войти</h2>
         </li>

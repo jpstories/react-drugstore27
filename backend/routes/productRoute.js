@@ -1,5 +1,6 @@
 import express from 'express';
 import Product from '../models/ProductModel';
+import { isAuth, isAdmin } from '../util';
 
 const router = express.Router();
 
@@ -8,7 +9,17 @@ router.get('/', async (req, res) => {
     res.send(products)
 })
 
-router.post('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
+    const product = await Product.findById({ _id: req.params.id });
+    if (product) {
+        res.send(product)
+    } else {
+        res.status(404).send({ message: 'Продукт не найден' })
+    }
+})
+
+
+router.post('/', isAuth, isAdmin, async (req, res) => {
     const product = new Product({
         name: req.body.name,
         image: req.body.image,
@@ -26,6 +37,36 @@ router.post('/', async (req, res) => {
     }
     return res.status(500).send({ message: ' Error in Creating Product.' });
 });
+
+router.put('/:id', isAuth, isAdmin, async (req, res) => {
+    const productID = req.params.id;
+    const product = await Product.findById(productID);
+    if (product) {
+        product.name = req.body.name,
+            product.image = req.body.image,
+            product.brand = req.body.brand,
+            product.price = req.body.price,
+            product.description = req.body.description,
+            product.stock = req.body.stock
+    };
+    const updatedProduct = await product.save();
+    if (updatedProduct) {
+        return res
+            .status(200)
+            .send({ message: 'Информация о продукте обновлена', data: updatedProduct });
+    }
+    return res.status(500).send({ message: 'Ошибка при обновлении информации о продукте' });
+});
+
+router.delete('/:id', isAuth, isAdmin, async (req, res) => {
+    const deletedProduct = await Product.findById(req.params.id);
+    if (deletedProduct) {
+        await deletedProduct.remove();
+        res.send({ message: 'Продукт удален' })
+    } else {
+        res.send({ message: 'Ошибка при удалении продукта' })
+    }
+})
 
 
 export default router;

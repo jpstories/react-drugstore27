@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const orders = [
-    {
-        _id: '1',
-        createdAt: '26.10.2020',
-        totalPrice: '1500',
-        user: { name: 'Sergey' },
-        isPaid: 'Оплата',
-        paidAt: '27.10.2020',
-        isDelivered: 'Доставка',
-        deliveredAt: '30.10.2020'
-    }
-];
-
-const userInfo = [{ email: 'gmdalmask@gmail.com', name: 'Sergey', password: 'test1234' }];
-
 function ProfilePage(props) {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -41,52 +26,47 @@ function ProfilePage(props) {
         };
     }, [])
 
-    let checkOrders;
-    if (orders === true) {
-        checkOrders = true;
-    } else {
-        checkOrders = false;
-    }
+    let checkOrders = false;
+    let userInfo = '';
+    let orders = '';
 
     return (
         <div className="profile">
             <div className="profile-info">
-                <div className="form">
-                    <form onSubmit={submitHandler} >
-                        <ul className="form-container">
-                            <li>
-                                <h2>Профиль</h2>
-                            </li>
-                            <li>
-                                <label htmlFor="name">
-                                    Имя
-              </label>
-                                <input value={name} type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
-                                </input>
-                            </li>
-                            <li>
-                                <label htmlFor="email">
-                                    Электронная почта
-          </label>
-                                <input value={email} type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
-                                </input>
-                            </li>
-                            <li>
-                                <label htmlFor="password">Пароль</label>
-                                <input value={password} type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
-                                </input>
-                            </li>
+                <form onSubmit={submitHandler} >
+                    <ul className="form-container">
+                        <li>
+                            <h2>Профиль</h2>
+                        </li>
+                        <li>
+                            <label htmlFor="name">
+                                Имя
+                            </label>
+                            <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+                            </input>
+                        </li>
+                        <li>
+                            <label htmlFor="email">
+                                Электронная почта
+                            </label>
+                            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
+                            </input>
+                        </li>
+                        <li>
+                            <label htmlFor="password">Пароль</label>
+                            <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
+                            </input>
+                        </li>
 
-                            <li>
-                                <button type="submit" className="button primary">Обновить</button>
-                            </li>
-                            <li>
-                                <button type="button" onClick={handleLogout} className="button secondary full-width">Выйти</button>
-                            </li>
+                        <li>
+                            <button type="submit" className="button primary">Обновить</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={handleLogout} className="button secondary full-width">Выйти</button>
+                        </li>
 
-                        </ul>
-                    </form>
-                </div>
+                    </ul>
+                </form>
             </div>
             <div className="profile-orders content-margined">
                 <table className="table profile-table">
@@ -111,7 +91,13 @@ function ProfilePage(props) {
                                 </td>
                             </tr>))
                             :
-                            <tr><td>Нет заказов</td></tr>}
+                            <tr>
+                                <td className="profile-table-noorders">Нет заказов</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>}
                     </tbody>
                 </table>
             </div>

@@ -59,14 +59,14 @@ function App() {
           <div className="brand">
             <img
               className="brand__img"
-              src="https://www.pngrepo.com/download/287892/pills-medicine.png"
+              src="/images/logo.png"
               alt="logo"
             />
             <Link to="/">Аптека 27</Link>
           </div>
 
           <div className="header-links">
-            <img width="30" src="./images/cart.png" alt="cart" />
+            <img width="30" src="/images/cart.png" alt="cart" />
             <Link className="header-links-cart" to="/cart">Корзина</Link>
 
             {userInfo ? (
@@ -120,7 +120,7 @@ function App() {
 
         {/* <footer className="footer">
           <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
-          <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+          <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="70%" height="400" frameborder="0"></iframe>
           <div className="copyright">Все права защищены</div>
         </footer> */}
 
