@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { signinAction } from '../../redux/actions/userAction'
 import { useDispatch, useSelector } from 'react-redux';
 
-function SigninScreen(props) {
+function SigninPage(props) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loading, userInfo, error } = useSelector(state => state.userSignin);
+  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -16,14 +17,14 @@ function SigninScreen(props) {
 
   useEffect(() => {
     if (userInfo) {
-      props.history.push('/')
+      props.history.push(redirect)
     }
     return {
 
     }
   }, [userInfo])
 
-  return <div className="form">
+  return <div className="form form-signin">
     <form onSubmit={submitHandler}>
       <ul className="form-container-signin">
         <li>
@@ -62,10 +63,10 @@ function SigninScreen(props) {
           Впервые на сайте?
         </li>
         <li>
-          <Link to="/register" className="button secondary text-center">Создать аккаунт</Link>
+          <Link to={redirect === '/' ? '/register' : 'register?redirect=' + redirect} className="button secondary text-center">Создать аккаунт</Link>
         </li>
       </ul>
     </form>
   </div>
 }
-export default SigninScreen;
+export default SigninPage;

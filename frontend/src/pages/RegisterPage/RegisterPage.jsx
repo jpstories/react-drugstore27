@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { registerAction } from '../../redux/actions/userAction';
 
-function RegisterScreen(props) {
+function RegisterPage(props) {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
   const { loading, userInfo, error } = useSelector(state => state.userRegister);
+  const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ function RegisterScreen(props) {
 
   useEffect(() => {
     if (userInfo) {
-      props.history.push('/signin')
+      props.history.push(redirect)
     }
   }, [userInfo])
 
@@ -28,6 +29,8 @@ function RegisterScreen(props) {
         <li>
           <h2>Создать аккаунт</h2>
         </li>
+        <li>{loading && 'Загрузка...'}</li>
+        <li>{error && 'Ошибка при регистрации'}</li>
         <li>
           <label htmlFor="name">
             Имя
@@ -46,18 +49,18 @@ function RegisterScreen(props) {
         </li>
         <li>
           <label htmlFor="rePassword">Повторите пароль</label>
-          <input type="password" id="rePassword" name="rePassword" require="true" onChange={(e) => setRePassword(e.target.value)} />
+          <input value={rePassword} type="password" id="rePassword" name="rePassword" require="true" onChange={(e) => setRePassword(e.target.value)} />
         </li>
         <li>
           <button type="submit" className="button primary">Зарегистрироваться</button>
         </li>
         <li>
           Уже есть аккаунт?
-          <Link to="/" className="button secondary text-center">Войти</Link>
+          <Link to={redirect === '/' ? '/signin' : 'signin?redirect=' + redirect} className="button secondary text-center">Создать аккаунт</Link>
         </li>
       </ul>
     </form>
   </div>
 }
 
-export default RegisterScreen;
+export default RegisterPage;

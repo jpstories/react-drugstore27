@@ -338,6 +338,9 @@ a > .rating > span:last-child {
   flex: 1 1;
   margin-right: 5px;
 }
+.cart-image img {
+  width: 10rem;
+}
 .cart-name {
   flex: 6 1;
 }
@@ -346,10 +349,22 @@ a > .rating > span:last-child {
   font-size: 2rem;
   text-align: right;
   margin-right: 15px;
-  margin-bottom: 15px;
 }
 
 .cart-name-settings {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-product-info {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  box-sizing: border-box;
+  height: 120px;
+  border-radius: 5px;
+  margin: 5px 0;
   display: flex;
   flex-flow: row;
   align-items: center;
@@ -367,8 +382,24 @@ a > .rating > span:last-child {
   justify-content: center;
   height: calc(100vh - 75px);
   margin-top: 25px;
+}
+.form-signin {
   background: url('https://www.dkb-dv.ru/media/uploads/2018/01/18/2.JPG');
+  background-repeat: no-repeat;
   background-size: cover;
+}
+.form-shipping {
+  width: 435px;
+  border: 1px solid #ccc;
+  height: 460px;
+  margin-top: 20px;
+}
+.shipping-page {
+  margin-top: 40px;
+  height: max-content;
+}
+.shipping-content-h {
+  height: calc(100vh - 165px);
 }
 .products-page {
   display: flex;
@@ -470,18 +501,25 @@ input {
 .checkout-steps {
   display: flex;
   justify-content: space-between;
-  width: 40rem;
-  margin: 1rem auto;
+  align-items: center;
+  width: 70rem;
+  margin: 5rem auto;
 }
 .checkout-steps > div {
   border-top: 0.3rem #c0c0c0 solid;
   color: #c0c0c0;
   flex: 1 1;
   padding-top: 1rem;
+  height: 5px;
+  text-align: center;
 }
 .checkout-steps > div.active {
   border-top: 0.3rem #f08000 solid;
   color: #f08000;
+}
+.checkout-steps div.active:last-child {
+  border-top: 0.3rem #0010f0 solid;
+  color: rgb(26, 77, 218);
 }
 
 /* Place Order */

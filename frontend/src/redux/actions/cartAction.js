@@ -26,4 +26,12 @@ const removeFromCartAction = (productID) => async (dispatch, getState) => {
     Cookie.set("cartItems", JSON.stringify(cartItems));
 }
 
-export { addToCartAction, removeFromCartAction };
+const shippingCart = (data) => (dispatch) => {
+    dispatch({ type: 'CART_SAVE_SHIPPING', payload: data })
+}
+
+const paymentCart = (data) => (dispatch) => {
+    dispatch({ type: 'CART_SAVE_PAYMENT', payload: data })
+}
+
+export { addToCartAction, removeFromCartAction, shippingCart, paymentCart };

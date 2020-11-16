@@ -1,15 +1,17 @@
 import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import userImage from './assets/img/user.png';
 import arrow from './assets/img/drop-down-arrow_white.png';
 
 import {
   OrdersPage, ProfilePage, HomePage, ProductPage,
-  CartPage, RegisterPage, SigninPage, ProductsPage
+  CartPage, RegisterPage, SigninPage, ProductsPage,
+  ShippingPage,
+  PlaceOrderPage,
+  PaymentPage
 } from './pages'
-
-import { useSelector } from 'react-redux';
 
 let trigger = false;
 
@@ -115,6 +117,9 @@ function App() {
             <Route path="/register" component={RegisterPage} />
             <Route path="/signin" component={SigninPage} />
             <Route path="/products" component={ProductsPage} />
+            <Route path="/shipping" component={ShippingPage} />
+            <Route path="/payment" component={PaymentPage} />
+            <Route path="/placeorder" component={PlaceOrderPage} />
           </div>
         </main>
 
