@@ -6,6 +6,7 @@ import { cartReducer } from "./reducers/cartReducer";
 import { registerReducer, signinReducer } from "./reducers/userReducer"
 
 import Cookie from "js-cookie";
+import { orderCreateReducer } from "./reducers/orderReducer";
 
 const cartItems = Cookie.getJSON('cartItems') || [];
 const userInfo = Cookie.getJSON('userInfo') || null;
@@ -23,6 +24,7 @@ const reducer = combineReducers({
     userRegister: registerReducer,
     productSave: productSaveReducer,
     productDelete: productDeleteReducer,
+    order: orderCreateReducer,
 });
 
 const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

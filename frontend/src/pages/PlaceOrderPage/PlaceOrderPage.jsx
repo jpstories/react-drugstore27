@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import StepLine from '../../components/StepLine';
-
-const shippingPrice = 250;
-const taxPrice = 20;
+import { createOrderAction } from '../../redux/actions/orderAction';
 
 function PlaceOrderPage(props) {
   const dispatch = useDispatch();
-  const { cartItems, shipping, payment } = useSelector(state => state.cart);
-  if (!shipping.address) {
+  const cart = useSelector(state => state.cart);
+  const { cartItems, shippingAddress, paymentMethod } = cart;
+
+  const orderItems = useSelector(state => state.order);
+  const { loading, success, error, order } = orderItems;
+
+  useEffect(() => {
+    if (success) {
+      props.history.push(`/order/${order.orderItems[0]._id}`)
+      dispatch({ type: 'ORDER_CREATE_RESET' })
+    }
+  }, [dispatch, props.history, success, order])
+
+  if (!shippingAddress) {
     props.history.push('/shipping')
   }
-  if (!payment.paymentMethod) {
+  if (!paymentMethod) {
     props.history.push('/payment')
   }
   const placeOrderHandler = () => {
-
+    dispatch(createOrderAction({
+      orderItems: cartItems, shippingAddress, paymentMethod, itemsPrice, shippingPrice,
+      taxPrice, totalPrice
+    }))
   }
 
   const itemsPrice = cartItems.reduce((a, c) => a + c.price, 0);
@@ -34,14 +47,15 @@ function PlaceOrderPage(props) {
             Доставка
           </h3>
           <div>
-            {shipping.country}, {shipping.city}, {shipping.postalCode}, {shipping.address}
+            {shippingAddress.country}, {shippingAddress.city},
+            {shippingAddress.postalCode}, {shippingAddress.address}
           </div>
         </div>
 
         <div>
           <h3>Оплата</h3>
           <div>
-            Метод оплаты: <b>{payment.paymentMethod}</b>
+            Метод оплаты: <b>{paymentMethod}</b>
           </div>
         </div>
 
@@ -66,9 +80,9 @@ function PlaceOrderPage(props) {
 
                     <div className="cart-name">
                       <div>
-                        <Link to={"/product/" + item.product}>
-                          {item.name}
-                        </Link>
+                        {/* <Link to={"/product/" + item._id}> */}
+                        {item.name}
+                        {/* </Link> */}
                       </div>
                     </div>
 
@@ -86,7 +100,15 @@ function PlaceOrderPage(props) {
       <div className="placeorder-action">
         <ul>
           <li>
-            <button disabled={cartItems.length === 0} className="button primary full-width" onClick={placeOrderHandler}>Подтвердить заказ</button>
+            <button
+              disabled={cartItems.length === 0}
+              className="button primary full-width"
+              onClick={placeOrderHandler}
+            >
+              Подтвердить заказ
+            </button>
+            {loading && 'Загрузка...'}
+            {error && 'Ошибка при оформлении заказа'}
           </li>
           <li>
             <h3>Весь заказ</h3>

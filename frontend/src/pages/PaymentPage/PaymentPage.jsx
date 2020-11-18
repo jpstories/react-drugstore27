@@ -5,7 +5,6 @@ import { paymentCart } from '../../redux/actions/cartAction';
 
 function PaymentPage(props) {
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
-
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -29,11 +28,25 @@ function PaymentPage(props) {
                 <input
                   type="radio"
                   name="paymentMethod"
-                  id="paymentMethod"
-                  value={paymentMethod}
+                  id="paypal"
+                  value="PayPal"
+                  checked
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 ></input>
-                <label forHtml="paymentMethod">Paypal</label>
+                <label>Paypal</label>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <input
+                  type="radio"
+                  name="paymentMethod"
+                  id="yandexmoney"
+                  value="Яндекс.Деньги"
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                ></input>
+                <label>Яндекс.Деньги</label>
               </div>
             </li>
 

@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCartAction, removeFromCartAction } from '../../redux/actions/cartAction';
+import { removeFromCartAction } from '../../redux/actions/cartAction';
 
 function CartScreen(props) {
     const dispatch = useDispatch();
-    // const productID = props.match.params.id;
 
     const { cartItems, loadingCart } = useSelector(state => state.cart);
 

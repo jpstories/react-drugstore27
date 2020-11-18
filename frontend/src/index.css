@@ -416,6 +416,10 @@ a > .rating > span:last-child {
     background: linear-gradient(45deg, rgb(36, 85, 138), rgb(37, 69, 212));
 }
 
+.form-container-signin input {
+  color: black !important;
+}
+
 .form-container-signin > label,
 .form-container-signin > li, 
 .form-container-signin > h2 {

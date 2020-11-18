@@ -1,10 +1,9 @@
 import express from 'express';
-import config from './config';
-import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import userRoute from './routes/userRoute';
-import productRoute from './routes/productRoute';
+import dotenv from 'dotenv';
+import config from './config';
 import bodyParser from 'body-parser';
+import { userRoute, productRoute, orderRoute } from './routes'
 
 dotenv.config();
 
@@ -19,6 +18,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
+app.use('/api/orders', orderRoute);
 
 app.listen(5000, () => {
     console.log('Сервер запущен, http://localhost:5000')

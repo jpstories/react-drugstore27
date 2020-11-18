@@ -1,5 +1,5 @@
 
-function cartReducer(state = { cartItems: [], shipping: {}, payment: {}, loadingCart: false }, action) {
+function cartReducer(state = { cartItems: [], shippingAddress: {}, loadingCart: false }, action) {
     switch (action.type) {
         case 'ADD_TO_CART_REQUEST':
             return { cartItems: [...state.cartItems], loadingCart: true }
@@ -16,11 +16,14 @@ function cartReducer(state = { cartItems: [], shipping: {}, payment: {}, loading
         case 'REMOVE_FROM_CART':
             const newItems = [...state.cartItems];
             const delItems = newItems.filter(item => item.id !== action.payload);
+            console.log(delItems);
             return { cartItems: delItems }
         case 'CART_SAVE_SHIPPING':
-            return { ...state, shipping: action.payload }
+            return { ...state, shippingAddress: action.payload }
         case 'CART_SAVE_PAYMENT':
-            return { ...state, payment: action.payload }
+            return { ...state, ...action.payload }
+        case 'CART_EMPTY':
+            return { ...state, cartItems: [] }
         default:
             return state;
     }
