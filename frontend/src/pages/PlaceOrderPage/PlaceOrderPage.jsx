@@ -14,7 +14,7 @@ function PlaceOrderPage(props) {
 
   useEffect(() => {
     if (success) {
-      props.history.push(`/order/${order.orderItems[0]._id}`)
+      props.history.push(`/order/${order._id}`)
       dispatch({ type: 'ORDER_CREATE_RESET' })
     }
   }, [dispatch, props.history, success, order])

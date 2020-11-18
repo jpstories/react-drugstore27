@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { homeAction } from "../../redux/actions/homeAction";
 
+import { Spin } from 'antd';
+
 function HomeScreen() {
     const dispatch = useDispatch();
 
@@ -35,7 +37,9 @@ function HomeScreen() {
             </div>
 
             {loading ? (
-                <div className="loading">Загрузка...</div>
+                <div className="loading">
+                    <Spin size="large" />
+                </div>
             ) : error ? (
                 <div>{error}</div>
             ) : (

@@ -1,3 +1,4 @@
+import { Spin } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -29,7 +30,7 @@ function RegisterPage(props) {
         <li>
           <h2>Создать аккаунт</h2>
         </li>
-        <li>{loading && 'Загрузка...'}</li>
+        {loading && <Spin size="large" />}
         <li>{error && 'Ошибка при регистрации'}</li>
         <li>
           <label htmlFor="name">

@@ -11,7 +11,7 @@ const createOrderAction = (order) => async (dispatch, getState) => {
         })
         dispatch({ type: 'ORDER_CREATE_SUCCESS', payload: data })
         dispatch({ type: 'CART_EMPTY' })
-        // localStorage.removeItem('cartItems')
+        localStorage.removeItem('cartItems')
     } catch (error) {
         dispatch({
             type: 'ORDER_CREATE_FAIL',
@@ -22,4 +22,17 @@ const createOrderAction = (order) => async (dispatch, getState) => {
     }
 }
 
-export { createOrderAction }
+const detailsOrderAction = (orderID) => async (dispatch, getState) => {
+    dispatch({ type: 'ORDER_DETAILS_REQUEST', payload: orderID })
+    try {
+        const { userSignin: { userInfo } } = getState();
+        const { data } = await axios.get(`/api/orders/${orderID}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` }
+        })
+        dispatch({ type: 'ORDER_DETAILS_SUCCESS', payload: data })
+    } catch (error) {
+        dispatch({ type: 'ORDER_DETAILS_FAIL', payload: error.message })
+    }
+}
+
+export { createOrderAction, detailsOrderAction }

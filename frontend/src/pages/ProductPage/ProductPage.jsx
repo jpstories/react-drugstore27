@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { addToCartAction } from "../../redux/actions/cartAction";
 import { detailAction } from "../../redux/actions/detailAction";
 
-import { Carousel } from 'antd';
+import { Carousel, Spin } from 'antd';
 
 const contentStyle = {
     height: '162px',
@@ -37,7 +37,9 @@ function ProductScreen(props) {
                 </Link>
             </div>
 
-            {loading ? <div className="loading">Загрузка...</div> :
+            {loading ? <div className="loading">
+                <Spin size="large" />
+            </div> :
                 error ? <div>Error</div> :
                     <React.Fragment>
                         <div className="details">

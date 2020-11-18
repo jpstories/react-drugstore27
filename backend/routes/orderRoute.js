@@ -9,6 +9,7 @@ orderRouter.post('/', isAuth, async (req, res) => {
         res.status(404).send({ message: 'Корзина пуста' })
     } else {
         const newOrder = new Order({
+            user: req.user._id,
             orderItems: req.body.orderItems,
             shippingAddress: req.body.shippingAddress,
             paymentMethod: req.body.paymentMethod,
@@ -16,10 +17,18 @@ orderRouter.post('/', isAuth, async (req, res) => {
             shippingPrice: req.body.shippingPrice,
             taxPrice: req.body.taxPrice,
             totalPrice: req.body.totalPrice,
-            user: req.body._id
         })
         const newOrderCreated = await newOrder.save();
         res.status(201).send({ message: "Заказ создан", order: newOrderCreated });
+    }
+})
+
+orderRouter.get('/:id', isAuth, async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        res.send(order)
+    } else {
+        res.status(404).send({ message: 'Продукт не найден' })
     }
 })
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { signinAction } from '../../redux/actions/userAction'
 import { useDispatch, useSelector } from 'react-redux';
+import { Spin } from 'antd';
 
 function SigninPage(props) {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function SigninPage(props) {
         <li>
           <h2>Войти</h2>
         </li>
-        {loading && <li>Загрузка...</li>}
+        {loading && <Spin size="large" />}
         {error && <li>{error}</li>}
         <li>
           <label htmlFor="email">

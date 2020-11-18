@@ -1,3 +1,4 @@
+import { Spin } from 'antd';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,7 +18,9 @@ function CartScreen(props) {
     }
 
     return (
-        loadingCart ? <div className="loading">Загрузка...</div>
+        loadingCart ? <div className="loading">
+            <Spin size="large" />
+        </div>
             :
             <div className="cart">
                 <div className="cart-list">

@@ -10,7 +10,8 @@ import {
   CartPage, RegisterPage, SigninPage, ProductsPage,
   ShippingPage,
   PlaceOrderPage,
-  PaymentPage
+  PaymentPage,
+  OrderPage
 } from './pages'
 
 let trigger = false;
@@ -120,6 +121,7 @@ function App() {
             <Route path="/shipping" component={ShippingPage} />
             <Route path="/payment" component={PaymentPage} />
             <Route path="/placeorder" component={PlaceOrderPage} />
+            <Route path="/order/:id" component={OrderPage} />
           </div>
         </main>
 

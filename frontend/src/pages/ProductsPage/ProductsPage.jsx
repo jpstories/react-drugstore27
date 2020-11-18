@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Spin } from 'antd';
 import { homeAction, productSaveAction, productDeleteAction } from '../../redux/actions/homeAction';
 
 function ProductsPage() {
@@ -131,7 +131,7 @@ function ProductsPage() {
             >
                 <form onSubmit={submitHandler}>
                     <ul className="form-container">
-                        {loadingSave && <li>Загрузка...</li>}
+                        {loadingSave && <Spin size="large" />}
                         {errorSave && <li>{errorSave}</li>}
                         <li>
                             <label htmlFor="name">

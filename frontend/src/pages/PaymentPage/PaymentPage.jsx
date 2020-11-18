@@ -29,11 +29,11 @@ function PaymentPage(props) {
                   type="radio"
                   name="paymentMethod"
                   id="paypal"
-                  value="PayPal"
+                  value="Оплата картой курьеру"
                   checked
                   onChange={(e) => setPaymentMethod(e.target.value)}
                 ></input>
-                <label>Paypal</label>
+                <label>Оплата картой курьеру</label>
               </div>
             </li>
 
