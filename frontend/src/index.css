@@ -542,6 +542,7 @@ input {
   background-color: #fcfcfc;
   padding: 1rem;
 }
+
 .placeorder-info > div {
   border: 0.1rem #c0c0c0 solid;
   border-radius: 0.5rem;
@@ -565,6 +566,13 @@ input {
   font-size: 2rem;
   font-weight: bold;
   color: #c04000;
+}
+.paypal-block {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center !important;
+  margin-top: 2.5rem;
 }
 .placeorder-actions-payment > div {
   width: 100%;
@@ -763,5 +771,5 @@ input {
 
 .order-delivered span, .order-paid span {
   font-size: 1.4rem !important;
-  padding: 3px 15px;
+  padding: 3px 5px;
 }

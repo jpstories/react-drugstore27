@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import StepLine from '../../components/StepLine';
 import { paymentCart } from '../../redux/actions/cartAction';
+import { Radio } from 'antd';
 
 function PaymentPage(props) {
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('Оплата картой курьеру');
   const dispatch = useDispatch();
+
+  const handleClickMethod = e => {
+    setPaymentMethod(e.target.value);
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -13,49 +18,29 @@ function PaymentPage(props) {
     props.history.push('placeorder');
   };
 
+  const radioStyle = {
+    display: 'block',
+    height: '30px',
+    lineHeight: '30px',
+  };
+
   return (
     <div>
       <StepLine step1 step2 step3 />
       <div className="form">
         <form onSubmit={submitHandler}>
-          <ul className="form-container">
-            <li>
-              <h2>Оплата</h2>
-            </li>
-
-            <li>
-              <div>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="paypal"
-                  value="Оплата картой курьеру"
-                  checked
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
-                <label>Оплата картой курьеру</label>
-              </div>
-            </li>
-
-            <li>
-              <div>
-                <input
-                  type="radio"
-                  name="paymentMethod"
-                  id="yandexmoney"
-                  value="Яндекс.Деньги"
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                ></input>
-                <label>Яндекс.Деньги</label>
-              </div>
-            </li>
-
-            <li>
-              <button type="submit" className="button primary">
-                Продолжить
-              </button>
-            </li>
-          </ul>
+          <div className="form-container">
+            <h2>Оплата</h2>
+            <Radio.Group onChange={handleClickMethod} value={paymentMethod}>
+              <Radio style={radioStyle} value='Оплата картой курьеру'>Оплата картой курьеру</Radio>
+              <Radio style={radioStyle} value='Оплата наличными курьеру'>Оплата наличными курьеру</Radio>
+              <Radio style={radioStyle} value='Яндекс.Деньги'>Яндекс.Деньги</Radio>
+              <Radio style={radioStyle} value='PayPal'>PayPal</Radio>
+            </Radio.Group>
+            <button type="submit" className="button primary">
+              Продолжить
+            </button>
+          </div>
         </form>
       </div>
     </div>
