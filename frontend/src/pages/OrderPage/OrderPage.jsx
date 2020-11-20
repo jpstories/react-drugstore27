@@ -9,26 +9,26 @@ import Axios from 'axios';
 
 function OrderPage(props) {
   const dispatch = useDispatch();
-  const orderID = props.match.params.id;
   const { loading, error, order } = useSelector(state => state.detailsOrder);
+  const orderID = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
 
   useEffect(() => {
-    dispatch(detailsOrderAction(orderID))
     const addPaypalScript = async () => {
+      dispatch(detailsOrderAction(orderID))
       const { data } = await Axios.get('/api/config/paypal');
+      console.log('paypal data:', data);
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = `http://www.paypal.com/sdk/js?client-id=${data}`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
       script.async = true;
       script.onload = () => {
         setSdkReady(true)
       }
       document.body.appendChild(script)
     }
-
     if (!orderID) {
-      dispatch(detailsOrderAction(orderID))
+      // dispatch(detailsOrderAction(orderID))
     } else {
       if (!order.isPaid) {
         if (!window.paypal) {

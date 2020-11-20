@@ -5,11 +5,13 @@ import {
     PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS,
 } from "../types";
 
-const homeAction = () => async (dispatch) => {
+const homeAction = (searchKeyword = '', sortOrder = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
-        const { data } = await axios.get('api/products');
+
+        const { data } = await axios.get(`/api/products?searchKeyword=${searchKeyword}&sortOrder=${sortOrder}`);
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
     }

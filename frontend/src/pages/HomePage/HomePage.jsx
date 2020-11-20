@@ -1,38 +1,110 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { homeAction } from "../../redux/actions/homeAction";
 
-import { Spin } from 'antd';
+import { Spin, Select, Input, Tabs } from 'antd';
+
+import { AudioOutlined } from '@ant-design/icons';
+import { AppleOutlined, AndroidOutlined } from '@ant-design/icons';
+
+const { Option, OptGroup } = Select;
+const { Search } = Input;
+const { TabPane } = Tabs;
+
+
+const suffix = (
+    <AudioOutlined
+        style={{
+            fontSize: 16,
+            color: '#1890ff',
+        }}
+    />
+);
 
 function HomeScreen() {
     const dispatch = useDispatch();
-
     const { products, loading, error } = useSelector((state) => state.productList);
+
+    const [searchKeyword, setSearchKeyword] = useState('');
+    const [sortOrder, setSortOrder] = useState('');
 
     useEffect(() => {
         dispatch(homeAction());
     }, []);
 
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(homeAction(searchKeyword, sortOrder));
+    };
+    const sortHandler = (value) => {
+        setSortOrder(value);
+        dispatch(homeAction(searchKeyword, sortOrder));
+    };
+
+    const onSearch = (value) => {
+        setSearchKeyword(value)
+    }
+
     return (
         <React.Fragment>
-            <h2 className="home__title">Антивирусное</h2>
+            <div className="content-margined"></div>
+            <Tabs defaultActiveKey="2">
+                <TabPane
+                    tab={
+                        <span>
+                            <AppleOutlined />
+                            Антивирусное
+                        </span>
+                    }
+                    key="1"
+                >
+                    Антивирусное
+                </TabPane>
+                <TabPane
+                    tab={
+                        <span>
+                            <AndroidOutlined />
+                            От кашля
+                        </span>
+                    }
+                    key="2"
+                >
+                    От кашля
+                </TabPane>
+            </Tabs>
             <div className="filter">
-                <div>
-                    <form>
-                        <input name="searchKeyword" />
+                {/* <div>
+                    <form onSubmit={submitHandler}>
+                        <input
+                            name="searchKeyword"
+                            onChange={(e) => setSearchKeyword(e.target.value)}
+                        />
                         <button type="submit">Поиск</button>
                     </form>
+                </div> */}
+                <div>
+                    <Search
+                        placeholder="Поиск..."
+                        enterButton="Найти"
+                        size="large"
+                        suffix={suffix}
+                        onSearch={onSearch}
+                    />
                 </div>
 
                 <div>
-                    <label htmlFor="sortOrder">Сортировать по</label>
-                    <select name="sortOrder">
-                        <option value="">Новинкам</option>
-                        <option value="lowest">Дешевые</option>
-                        <option value="highest">Дорогие</option>
-                    </select>
+                    <label htmlFor="sortOrder">Сортировать по: </label>
+                    <Select name="sortOrder" defaultValue="Новинкам" style={{ width: 120 }} onChange={sortHandler}>
+                        <OptGroup label="По цене">
+                            <Option value="highest">Недорогим</Option>
+                            <Option value="lowest">Дорогим</Option>
+                        </OptGroup>
+                        <OptGroup label="По поступлению">
+                            <Option value="">Новинкам</Option>
+                        </OptGroup>
+                    </Select>
                 </div>
             </div>
 

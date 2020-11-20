@@ -11,7 +11,7 @@ const createOrderAction = (order) => async (dispatch, getState) => {
         })
         dispatch({ type: 'ORDER_CREATE_SUCCESS', payload: data })
         dispatch({ type: 'CART_EMPTY' })
-        localStorage.removeItem('cartItems')
+        // localStorage.removeItem('cartItems')
     } catch (error) {
         dispatch({
             type: 'ORDER_CREATE_FAIL',

@@ -5,7 +5,19 @@ import { isAuth, isAdmin } from '../util';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const products = await Product.find({});
+    const searchKeyword = req.query.searchKeyword ? {
+        name: {
+            $regex: req.query.searchKeyword,
+            $options: 'i',
+        },
+    } : {};
+
+    const sortOrder = req.query.sortOrder ? req.query.sortOrder === 'lowest'
+        ? { price: 1 }
+        : { price: -1 }
+        : { _id: -1 };
+
+    const products = await Product.find({ ...searchKeyword }).sort(sortOrder);
     res.send(products)
 })
 
