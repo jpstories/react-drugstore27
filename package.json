@@ -1,10 +1,10 @@
 {
   "name": "react-drugstore27",
   "version": "1.0.0",
-  "description": "",
+  "description": "by Sergey Bobylev (@jpstories)",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+    "start": "nodemon --watch backend --exec backend/server.js"
   },
   "repository": {
     "type": "git",

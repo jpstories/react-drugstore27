@@ -1,6 +1,7 @@
 {
   "name": "react-drugstore27",
   "version": "0.1.0",
+  "description": "by Sergey Bobylev (@jpstories)",
   "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {

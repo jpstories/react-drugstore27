@@ -1,0 +1,1 @@
+export const GJ = () => <div className="copyright">Разработал: Сергей Бобылев (@jpstories), все права защищены</div>

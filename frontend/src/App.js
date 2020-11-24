@@ -13,6 +13,8 @@ import {
   PaymentPage,
   OrderPage
 } from './pages'
+import { GJ } from './components/GJ.jsx';
+
 
 let trigger = false;
 
@@ -125,11 +127,11 @@ function App() {
           </div>
         </main>
 
-        {/* <footer className="footer">
+        <footer className="footer">
           <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
-          <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="70%" height="400" frameborder="0"></iframe>
-          <div className="copyright">Все права защищены</div>
-        </footer> */}
+          <iframe title="Drugstore 27" src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+          <GJ />
+        </footer>
 
       </div>
     </BrowserRouter>
