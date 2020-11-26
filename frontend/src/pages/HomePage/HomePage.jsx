@@ -34,10 +34,6 @@ function HomeScreen() {
         dispatch(homeAction());
     }, []);
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        dispatch(homeAction(searchKeyword, sortOrder));
-    };
     const sortHandler = (value) => {
         setSortOrder(value);
         dispatch(homeAction(searchKeyword, sortOrder));
@@ -75,15 +71,6 @@ function HomeScreen() {
                 </TabPane>
             </Tabs>
             <div className="filter">
-                {/* <div>
-                    <form onSubmit={submitHandler}>
-                        <input
-                            name="searchKeyword"
-                            onChange={(e) => setSearchKeyword(e.target.value)}
-                        />
-                        <button type="submit">Поиск</button>
-                    </form>
-                </div> */}
                 <div>
                     <Search
                         placeholder="Поиск..."
