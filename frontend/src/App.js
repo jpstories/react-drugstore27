@@ -1,4 +1,5 @@
 import React from 'react';
+import { GJ } from './components/GJ.jsx';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -13,8 +14,6 @@ import {
   PaymentPage,
   OrderPage
 } from './pages'
-import { GJ } from './components/GJ.jsx';
-
 
 let trigger = false;
 
@@ -128,14 +127,6 @@ function App() {
         </main>
 
         <footer className="footer">
-          <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
-          <iframe
-            title="Drugstore 27"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor"
-            width="100%"
-            height="400"
-            frameBorder="0"
-          />
           <GJ />
         </footer>
 

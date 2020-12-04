@@ -24,4 +24,13 @@ function registerReducer(state = {}, action) {
     }
 }
 
-export { signinReducer, registerReducer }
+function logoutReducer(state = {}, action) {
+    switch (action.type) {
+        case 'USER_LOGOUT':
+            return { userInfo: action.payload }
+        default:
+            return state
+    }
+}
+
+export { signinReducer, registerReducer, logoutReducer }

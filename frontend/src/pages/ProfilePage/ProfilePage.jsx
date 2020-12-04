@@ -1,108 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logoutAction, signinAction } from '../../redux/actions/userAction';
+import { Tag, Button } from 'antd';
+import userImage from '../../assets/img/user.png';
+import { listMyOrdersAction } from '../../redux/actions/orderAction';
 
 function ProfilePage(props) {
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const dispatch = useDispatch();
+
+    const { userInfo } = useSelector(state => state.userSignin);
+    const { orders, loading } = useSelector(state => state.userOrders);
+
+    console.log('orders: ', orders);
 
     const handleLogout = () => {
-        alert('Выход...')
+        dispatch(logoutAction())
+        props.history.push('/signin')
+        dispatch(signinAction(null, null));
     }
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        alert('Профиль обновлен')
-    }
-
-    useEffect(() => {
-        if (userInfo) {
-            setEmail(userInfo.email);
-            setName(userInfo.name);
-            setPassword(userInfo.password);
-        }
-        return () => {
-
-        };
+    React.useEffect(() => {
+        dispatch(listMyOrdersAction())
     }, [])
 
-    let checkOrders = false;
-    let userInfo = '';
-    let orders = '';
+    return (userInfo ? <div className="profile">
+        <div className="profile-info">
+            <h2 className="profile-title">Профиль</h2>
+            <div className="form-container profile-details">
 
-    return (
-        <div className="profile">
-            <div className="profile-info">
-                <form onSubmit={submitHandler} >
-                    <ul className="form-container">
-                        <li>
-                            <h2>Профиль</h2>
-                        </li>
-                        <li>
-                            <label htmlFor="name">
-                                Имя
-                            </label>
-                            <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
-                            </input>
-                        </li>
-                        <li>
-                            <label htmlFor="email">
-                                Электронная почта
-                            </label>
-                            <input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
-                            </input>
-                        </li>
-                        <li>
-                            <label htmlFor="password">Пароль</label>
-                            <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
-                            </input>
-                        </li>
+                <div>
+                    <div>Имя:</div>
+                    <Tag color="blue">{userInfo.name}</Tag>
+                    <div>Электронная почта</div>
+                    <Tag color="green">{userInfo.email}</Tag>
+                </div>
 
-                        <li>
-                            <button type="submit" className="button primary">Обновить</button>
-                        </li>
-                        <li>
-                            <button type="button" onClick={handleLogout} className="button secondary full-width">Выйти</button>
-                        </li>
-
-                    </ul>
-                </form>
+                <div className="profile-photo">
+                    <img src={userImage} alt="user__photo" width="55" />
+                    <a href="#">Фото профиля</a>
+                </div>
             </div>
-            <div className="profile-orders content-margined">
-                <table className="table profile-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Дата</th>
-                            <th>Итого</th>
-                            <th>Оплачено</th>
-                            <th>Действия</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {checkOrders ?
-                            (orders.map(order => <tr key={order._id}>
-                                <td>{order._id}</td>
-                                <td>{order.createdAt}</td>
-                                <td>{order.totalPrice}</td>
-                                <td>{order.isPaid}</td>
-                                <td>
-                                    <Link to='/'>Детали</Link>
-                                </td>
-                            </tr>))
-                            :
-                            <tr>
-                                <td className="profile-table-noorders">Нет заказов</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>}
-                    </tbody>
-                </table>
-            </div>
+            <Button className="" type="primary" onClick={handleLogout}>Выйти</Button>
         </div>
-    )
+        <div className="profile-orders content-margined">
+            <table className="table profile-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Итого</th>
+                        <th>Оплачено</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders ? !loading &&
+                        (orders.map(order => <tr key={order._id}>
+                            <td>{order._id}</td>
+                            <td>{order.createdAt}</td>
+                            <td>{order.totalPrice}</td>
+                            <td>{order.isPaid}</td>
+                            <td>
+                                <Link to='/'>Детали</Link>
+                            </td>
+                        </tr>))
+                        :
+                        <tr>
+                            <td className="profile-table-noorders">Нет заказов</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+        : <div>
+            <h2>Войдите в систему</h2>
+            <Link to="/signin">Войти</Link>
+        </div>)
 }
 
 export default ProfilePage;

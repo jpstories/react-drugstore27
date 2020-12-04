@@ -24,11 +24,9 @@ function CartScreen(props) {
             :
             <div className="cart">
                 <div className="cart-list">
+                    <h3 className="cart-title">Корзина</h3>
                     <div className="cart-list-container">
                         <div>
-                            <h3>
-                                Корзина
-                            </h3>
                         </div>
                         {cartItems.length === 0 ?
                             <div>Корзина пуста :(</div>

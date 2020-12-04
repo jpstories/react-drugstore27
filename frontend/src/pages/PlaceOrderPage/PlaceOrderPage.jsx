@@ -38,7 +38,7 @@ function PlaceOrderPage(props) {
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   return <div>
-    <StepLine step1 step2 step3 step4 />
+    <StepLine step1 step2 step3 />
     <div className="placeorder">
       <div className="placeorder-info">
 

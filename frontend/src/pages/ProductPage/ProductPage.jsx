@@ -7,14 +7,13 @@ import { detailAction } from "../../redux/actions/detailAction";
 import { Carousel, Spin } from 'antd';
 
 const contentStyle = {
-    height: '162px',
-    width: '400px',
+    height: '160px',
     color: '#fff',
-    lineHeight: '120px',
+    lineHeight: '160px',
     textAlign: 'center',
-    background: '#e9e9e9',
-    color: '#444'
+    background: '#364d79',
 };
+
 
 function ProductScreen(props) {
     const dispatch = useDispatch();
@@ -47,16 +46,16 @@ function ProductScreen(props) {
                                 <img src={product.image} alt="product"></img>
                                 <Carousel autoplay dotPosition="left">
                                     <div>
-                                        <h3 style={contentStyle}>1</h3>
+                                        <img className="details-image__slide" src={product.image} alt="product-slide" />
                                     </div>
                                     <div>
-                                        <h3 style={contentStyle}>2</h3>
+                                        <img className="details-image__slide" src={product.image} alt="product-slide" />
                                     </div>
                                     <div>
-                                        <h3 style={contentStyle}>3</h3>
+                                        <img className="details-image__slide" src={product.image} alt="product-slide" />
                                     </div>
                                     <div>
-                                        <h3 style={contentStyle}>4</h3>
+                                        <img className="details-image__slide" src={product.image} alt="product-slide" />
                                     </div>
                                 </Carousel>
                             </div>

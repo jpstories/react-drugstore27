@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import StepLine from '../../components/StepLine';
 import { shippingCart } from '../../redux/actions/cartAction';
@@ -17,8 +17,9 @@ function ShippingPage(props) {
     dispatch(shippingCart({ address, city, postalCode, country }));
     props.history.push('payment');
   }
+
   return <div className="shipping-page">
-    <StepLine step1 step2 />
+    <StepLine step1 />
     <div className="form shipping-content-h">
       <form onSubmit={submitHandler} className="form-shipping">
         <ul className="form-container">

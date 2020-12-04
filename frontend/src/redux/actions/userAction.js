@@ -23,4 +23,9 @@ const registerAction = (name, email, password) => async (dispatch) => {
     }
 }
 
-export { signinAction, registerAction }
+const logoutAction = () => (dispatch) => {
+    Cookie.remove("userInfo");
+    dispatch({ type: 'USER_LOGOUT' })
+}
+
+export { signinAction, registerAction, logoutAction }

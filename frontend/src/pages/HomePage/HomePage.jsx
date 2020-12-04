@@ -13,7 +13,6 @@ const { Option, OptGroup } = Select;
 const { Search } = Input;
 const { TabPane } = Tabs;
 
-
 const suffix = (
     <AudioOutlined
         style={{
@@ -41,12 +40,13 @@ function HomeScreen() {
 
     const onSearch = (value) => {
         setSearchKeyword(value)
+        dispatch(homeAction(searchKeyword, sortOrder));
     }
 
     return (
         <React.Fragment>
             <div className="content-margined"></div>
-            <Tabs defaultActiveKey="2">
+            <Tabs defaultActiveKey="1">
                 <TabPane
                     tab={
                         <span>
@@ -127,6 +127,16 @@ function HomeScreen() {
                             ))}
                         </ul>
                     )}
+            <footer className="footer">
+                <div className="footer-adress">Адрес: г.Хабаровск, Вороженская 49</div>
+                <iframe
+                    title="Drugstore 27"
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3A8baa613d7f5dbf9a6bf06ba19caf93738a5ffd05efc009c0c52d09d8b2d6379c&amp;source=constructor"
+                    width="100%"
+                    height="400"
+                    frameBorder="0"
+                />
+            </footer>
         </React.Fragment>
     );
 }

@@ -26,7 +26,7 @@ function PaymentPage(props) {
 
   return (
     <div>
-      <StepLine step1 step2 step3 />
+      <StepLine step1 step2 />
       <div className="form">
         <form onSubmit={submitHandler}>
           <div className="form-container">
